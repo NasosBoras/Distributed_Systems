@@ -17,6 +17,8 @@ public class Task {
 	private String description;
 	@Column(name = "assigned_on")
 	private String assignedOn;
+	@Column(name = "completed")
+	private boolean completed;
 	
 	public Task() {}
 	
@@ -54,12 +56,23 @@ public class Task {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+
+	public boolean isCompleted() {
+		return completed;
+	}
+
+	public void setCompleted(boolean completed) {
+		this.completed = completed;
+	}
 
 	@Override
 	public String toString() {
 		return "Task [id=" + id + ", hours=" + hours + ", description=" + description + ", assignedOn=" + assignedOn
-				+ "]";
+				+ ", completed=" + completed + "]";
 	}
+
+	
 
 	
 	

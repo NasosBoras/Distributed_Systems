@@ -41,7 +41,7 @@ public class Role {
 		this.name = name;
 	}
 
-	public boolean isEditUser() {
+	public boolean canEditUser() {
 		return editUser;
 	}
 
@@ -49,7 +49,7 @@ public class Role {
 		this.editUser = editUser;
 	}
 
-	public boolean isEditRole() {
+	public boolean canEditRole() {
 		return editRole;
 	}
 
@@ -57,7 +57,7 @@ public class Role {
 		this.editRole = editRole;
 	}
 
-	public boolean isValidate() {
+	public boolean canValidate() {
 		return validate;
 	}
 
@@ -65,7 +65,7 @@ public class Role {
 		this.validate = validate;
 	}
 
-	public boolean isEditFutureProf() {
+	public boolean canEditFutureProf() {
 		return editFutureProf;
 	}
 

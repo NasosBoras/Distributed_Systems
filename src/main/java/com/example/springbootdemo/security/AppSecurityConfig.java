@@ -55,13 +55,13 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 		canEditProf = new ArrayList<String>();
 		
 		roles.forEach((r)->{
-			if(r.isEditFutureProf())
+			if(r.canEditFutureProf())
 				canEditProf.add(r.getName());
-			if(r.isEditRole())
+			if(r.canEditRole())
 				canEditRole.add(r.getName());
-			if(r.isValidate())
+			if(r.canValidate())
 				canValidate.add(r.getName());
-			if(r.isEditUser())
+			if(r.canEditUser())
 				canEditUser.add(r.getName());
 		});
 		
