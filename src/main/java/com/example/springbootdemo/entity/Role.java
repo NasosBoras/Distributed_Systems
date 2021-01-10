@@ -2,6 +2,8 @@ package com.example.springbootdemo.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -9,6 +11,7 @@ import javax.persistence.Table;
 @Table(name = "roles")
 public class Role {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 	@Column(name = "name")
@@ -17,22 +20,24 @@ public class Role {
 	private boolean editUser;
 	@Column(name = "edit_role")
 	private boolean editRole;
-	@Column(name = "validate")
-	private boolean validate;
+	@Column(name = "edit_task")
+	private boolean ediTask;
 	@Column(name = "edit_future_prof")
 	private boolean editFutureProf;
 	
 	public Role() {}
 	
-	public Role(String name, boolean editUser, boolean editRole, boolean validate, boolean editFutureProf) {
+	public Role(String name, boolean editUser, boolean editRole, boolean editTask, boolean editFutureProf) {
 		super();
 		this.name = name;
 		this.editUser = editUser;
 		this.editRole = editRole;
-		this.validate = validate;
+		this.ediTask = editTask;
 		this.editFutureProf = editFutureProf;
 	}
 
+	
+	
 	public String getName() {
 		return name;
 	}
@@ -41,7 +46,7 @@ public class Role {
 		this.name = name;
 	}
 
-	public boolean canEditUser() {
+	public boolean isEditUser() {
 		return editUser;
 	}
 
@@ -49,7 +54,7 @@ public class Role {
 		this.editUser = editUser;
 	}
 
-	public boolean canEditRole() {
+	public boolean isEditRole() {
 		return editRole;
 	}
 
@@ -57,15 +62,15 @@ public class Role {
 		this.editRole = editRole;
 	}
 
-	public boolean canValidate() {
-		return validate;
+	public boolean isEditTask() {
+		return ediTask;
 	}
 
-	public void setValidate(boolean validate) {
-		this.validate = validate;
+	public void setEditTask(boolean validate) {
+		this.ediTask = validate;
 	}
 
-	public boolean canEditFutureProf() {
+	public boolean isEditFutureProf() {
 		return editFutureProf;
 	}
 
@@ -80,13 +85,13 @@ public class Role {
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "Role [name=" + name + ", editUser=" + editUser + ", editRole=" + editRole + ", validate=" + validate
-				+ ", editFutureProf=" + editFutureProf + "]";
+		return "Role [id=" + id + ", name=" + name + ", editUser=" + editUser + ", editRole=" + editRole + ", ediTask="
+				+ ediTask + ", editFutureProf=" + editFutureProf + "]";
 	}
-	
+
 	public boolean isAdmin() {
 		if(this.getName().equals("admin")) {
 			return true;

@@ -13,9 +13,9 @@ public class GeneralUser {
 	@Column(name = "id")
 	private int id;
 	@Column(name = "first_name")
-	private String firstName;
+	private String fname;
 	@Column(name = "last_name")
-	private String lastName;
+	private String lname;
 	@Column(name = "username")
 	private String username;
 	@Column(name = "password")
@@ -25,28 +25,28 @@ public class GeneralUser {
 	
 	public GeneralUser(String firstName, String lastName, String username, String password) {
 		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
+		this.fname = firstName;
+		this.lname = lastName;
 		this.username = username;
 		this.password = password;
 	}
 	public String getFirstName() {
-		return firstName;
+		return fname;
 	}
 
 
 	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+		this.fname = firstName;
 	}
 
 
 	public String getLastName() {
-		return lastName;
+		return lname;
 	}
 
 
 	public void setLastName(String lastName) {
-		this.lastName = lastName;
+		this.lname = lastName;
 	}
 
 
@@ -85,7 +85,7 @@ public class GeneralUser {
 
 	@Override
 	public String toString() {
-		return "[id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
+		return "[id=" + id + ", firstName=" + fname + ", lastName=" + lname + ", username=" + username
 				+ ", password=" +password;
 	}
 }

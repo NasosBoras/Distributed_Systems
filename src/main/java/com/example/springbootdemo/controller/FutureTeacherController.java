@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -19,6 +20,7 @@ import com.example.springbootdemo.entity.FutureTeacher;
 import com.example.springbootdemo.repository.FutureTeacherRepository;
 
 @RestController
+@RequestMapping("/api")
 public class FutureTeacherController {
 	@Autowired
 	private FutureTeacherRepository futureTeacherRepository;
@@ -28,18 +30,18 @@ public class FutureTeacherController {
 		return futureTeacherRepository.findAll();
 	}
 	
-	@GetMapping("/future_teacher/{id}")
+	@GetMapping("/future_teachers/{id}")
 	public FutureTeacher retrieveTeacher(@PathVariable int id) {
 		Optional<FutureTeacher> teacher = futureTeacherRepository.findById(id);
 		return teacher.get();
 	}
 	
-	@DeleteMapping("/future_teacher/{id}")
+	@DeleteMapping("/future_teachers/{id}")
 	public void deleteTeacher(@PathVariable int id) {
 		futureTeacherRepository.deleteById(id);
 	}
 	
-	@PostMapping("/teachers")
+	@PostMapping("/future_teachers")
 	public ResponseEntity<Object> createTeacher(@RequestBody FutureTeacher teacher){
 		FutureTeacher savedTeacher = futureTeacherRepository.save(teacher);
 		

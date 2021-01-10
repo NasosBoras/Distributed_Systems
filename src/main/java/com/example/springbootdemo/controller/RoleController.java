@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -19,6 +20,7 @@ import com.example.springbootdemo.entity.Role;
 import com.example.springbootdemo.repository.RoleRepository;
 
 @RestController
+@RequestMapping("/api")
 public class RoleController {
 	
 	@Autowired
@@ -36,7 +38,7 @@ public class RoleController {
 		return role.get();
 	}
 	
-	@DeleteMapping("/role/{id}")
+	@DeleteMapping("/roles/{id}")
 	public void deleteRole(@PathVariable int id) {
 		Role role = roleRepository.findById(id).get();
 		if(!role.isAdmin()) {
