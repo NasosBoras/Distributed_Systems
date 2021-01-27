@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+        <br>
+        <input type="text" id = 'fname' placeholder = "First Name" style = "margin-left: auto;margin-right: auto;display: block;;">
+        <input type="text" id = 'lname' placeholder = "Last Name" style = "margin-left: auto;margin-right: auto;display: block;;">
+        <input type="text" id = 'username' placeholder = "Username" style = "margin-left: auto;margin-right: auto;display: block;">
+        <input type="text" id = 'password' placeholder = "Password" style = "margin-left: auto;margin-right: auto;display: block;">
+        <input type="text" id = 'role' placeholder = "Role" style = "margin-left: auto;margin-right: auto;display: block;">
+        <input id = 'submit' type="button" value = "Submit">
+</body>
+<script>
+    var url = "http://192.168.1.14:8080";
+    document.getElementById('submit').addEventListener('click', function(){
+        fname = document.getElementById('fname').value;
+        lname = document.getElementById('lname').value;
+        username = document.getElementById('username').value;
+        password = document.getElementById('password').value;
+        role = document.getElementById('role').value;
+        const user = {
+            "firstName" : fname,
+            "lastName" : lname,
+            "username" : username,
+            "password" : password,
+            "role" : role
+        };
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url+"/api/users");
+        xhr.setRequestHeader('Content-Type','application/json');
+        xhr.send(JSON.stringify(user));
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4 && xhr.status == 200){
+                alert('Success');
+            }
+        }
+    });
+</script>
+</html>

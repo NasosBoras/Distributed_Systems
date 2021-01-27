@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+        <input type="text" id = 'name' placeholder = "Name Of Role">
+        <br>
+        <label for="editUser">Can Edit Users</label>
+        <input type="checkbox" id = 'editUser'>
+        <br>
+        <label for="editRole">Can Edit Roles</label>
+        <input type="checkbox" id = 'editRole'>
+        <br>
+        <label for="editTask">Can Edit Task</label>
+        <input type="checkbox" id = 'editTask'>
+        <br>
+        <label for="editProf">Can Edit Future Professor</label>
+        <input type="checkbox" id = 'editProf'>
+        <br>
+        <input id = 'submit' type="button" value = "Submit">
+</body>
+<script>
+    var url = "http://192.168.1.14:8080";
+    document.getElementById('submit').addEventListener('click', function(){
+        name = document.getElementById('name').value;
+        user = document.getElementById('editUser').checked;
+        role = document.getElementById('editRole').checked;
+        task = document.getElementById('editTask').checked;
+        prof = document.getElementById('editProf').checked;
+        const elem = {
+            "name" : name,
+            "editUser" : user,
+            "editRole" : role,
+            "editFutureProf" : prof,
+            "editTask" : task
+        };
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url+"/api/roles");
+        xhr.setRequestHeader('Content-Type','application/json');
+        xhr.send(JSON.stringify(elem));
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4 && xhr.status == 200){
+                alert('Success');
+            }
+        }
+    });
+</script>
+</html>

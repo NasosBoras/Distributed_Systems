@@ -22,13 +22,16 @@ public class Task {
 	private String assignedOn;
 	@Column(name = "completed")
 	private boolean completed;
+	@Column(name = "name")
+	private String name;
 	
 	public Task() {}
 	
-	public Task(int hours, String description) {
+	public Task(int hours, String description, String name) {
 		super();
 		this.hours = hours;
 		this.description = description;
+		this.name = name;
 	}
 	public int getHours() {
 		return hours;
@@ -45,7 +48,6 @@ public class Task {
 	public int getId() {
 		return id;
 	}
-	
 	
 	
 	public String getAssignedOn() {
@@ -69,10 +71,22 @@ public class Task {
 		this.completed = completed;
 	}
 
+	
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	@Override
 	public String toString() {
 		return "Task [id=" + id + ", hours=" + hours + ", description=" + description + ", assignedOn=" + assignedOn
-				+ ", completed=" + completed + "]";
+				+ ", completed=" + completed + ", name=" + name + "]";
 	}
+
+	
 
 }

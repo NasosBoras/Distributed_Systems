@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="links">
+
+    </div>
+</body>
+<script>
+    xhr = new XMLHttpRequest();
+    var url = 'http://192.168.1.14:8080/';
+        divElem = document.getElementById('links');
+        for (let i = divElem.childNodes.length - 1; i >= 0; i--) {
+            divElem.removeChild(divElem.childNodes[i]);
+        }
+        paths = ['future_teachers', 'tasks', 'users', 'roles'];
+        paths.forEach(element => {
+            xhr.open('GET', url + 'api/' + element + '/1', false);
+            xhr.send();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var a;
+                    a = document.createElement('a');
+                    a.href = url + element + ".html";
+                    a.text = element;
+                    divElem.appendChild(a);
+                    divElem.appendChild(document.createElement('br'));
+                }
+            }
+        });
+        xhr.open('GET', url + 'api/' + paths[3] + '/1', false);
+            xhr.send();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var a;
+                    a = document.createElement('a');
+                    a.href = url + paths[3] + ".html";
+                    a.text = paths[3];
+                    divElem.appendChild(a);
+                    divElem.appendChild(document.createElement('br'));
+                }
+            }
+
+
+    post_button = document.getElementById('Post');
+    post_button.addEventListener('click', function () {
+        var task = {
+            'hours': 4,
+            'description': "this is a test task.",
+            'assignedOn': "3,4",
+            'completed': false
+        };
+
+        xhr.open('POST', 'http://' + url + ':8080/api/tasks', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify(task));
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                alert('Success');
+            }
+        }
+    });
+//     	  $.ajax({
+//     	        type: "POST",
+//     	        url: "http://"+url+':8080/api/tasks',
+//     	        data: task,
+//     	        contentType: "application/json; charset=utf-8",
+//     	        dataType: "json",
+//     	        success: function(){alert('Success');},
+//     	        failure: function(errMsg) {
+//     	            alert(errMsg);
+//     	        }
+//     	  });
+//         xhr = new XMLHttpRequest();
+//         xhr.open('POST','http://'+url+':8080/api/tasks',true);
+//         xhr.setRequestHeader('Content-Type','application/json');
+//         
+//         xhr.setRequestHeader('XSRF-TOKEN',getMyToken());
+//         xhr.send(JSON.stringify(task));
+//         xhr.onreadystatechange = function(){
+// 				if (xhr.readyState == 4 && xhr.status == 200){
+// 					alert('Task Added!');
+// 				};
+// 			}
+//     });
+//     document.getElementById('csrf').value = getMyToken()
+//     function getMyToken() {
+//     var cookies = document.cookie;
+//     return cookies.replace('XSRF-TOKEN=','');
+
+</script>
+
+</html>

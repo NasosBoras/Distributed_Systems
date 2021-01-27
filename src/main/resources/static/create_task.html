@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+        <input type="text" id = 'name' placeholder = "Name Of Task" style = "margin-left: auto;margin-right: auto;display: block;">
+        <br>
+        <input type="text" id = 'hours' placeholder = "Hours" style = "margin-left: auto;margin-right: auto;display: block;;">
+        <input type="text" id = 'desc' placeholder = "Description" style = "margin-left: auto;margin-right: auto;display: block;">
+        <input type="text" id = 'assignedOn' placeholder = "Assign On" style = "margin-left: auto;margin-right: auto;display: block;">
+        <input id = 'submit' type="button" value = "Submit">
+</body>
+<script>
+    var url = "http://192.168.1.14:8080";
+    document.getElementById('submit').addEventListener('click', function(){
+        name = document.getElementById('name').value;
+        hours = document.getElementById('hours').value;
+        desc = document.getElementById('desc').value;
+        assign = document.getElementById('assignedOn').value;
+        const task = {
+            "hours" : hours,
+            "description" : desc,
+            "assignedOn" : assign,
+            "name" : name
+        };
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url+"/api/tasks");
+        xhr.setRequestHeader('Content-Type','application/json');
+        xhr.send(JSON.stringify(task));
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4 && xhr.status == 200){
+                alert('Success');
+            }
+        }
+    });
+</script>
+</html>

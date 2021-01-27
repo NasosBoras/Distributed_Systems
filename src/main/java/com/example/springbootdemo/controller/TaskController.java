@@ -39,13 +39,8 @@ public class TaskController {
 	}
 	
 	@DeleteMapping("/tasks/{id}")
-	public ResponseEntity<Object> deleteTask(@RequestBody Task task){
-		Task savedTask = taskRepository.save(task);
-		
-		URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/{id}")
-				.buildAndExpand(savedTask.getId()).toUri();
-		
-		return ResponseEntity.created(location).build();
+	public void deleteTask(@PathVariable int id){
+		taskRepository.deleteById(id);
 	}
 	
 	@PostMapping("/tasks")

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+        <input type="text" id = 'fname' placeholder = "First Name" style = "margin-left: auto;margin-right: auto;display: block;">
+        <br>
+        <input type="text" id = 'lname' placeholder = "Last Name" style = "margin-left: auto;margin-right: auto;display: block;;">
+        <input id = 'submit' type="button" value = "Submit">
+</body>
+<script>
+    var url = "http://192.168.1.14:8080";
+    document.getElementById('submit').addEventListener('click', function(){
+        fname = document.getElementById('fname').value;
+        lname = document.getElementById('lname').value;
+        const teacher = {
+            "firstName" : fname,
+            "lastName" : lname
+        };
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url+"/api/future_teachers");
+        xhr.setRequestHeader('Content-Type','application/json');
+        xhr.send(JSON.stringify(teacher));
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4 && xhr.status == 200){
+                alert('Success');
+            }
+        }
+    });
+</script>
+</html>

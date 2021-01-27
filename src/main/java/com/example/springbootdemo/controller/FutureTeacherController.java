@@ -43,12 +43,14 @@ public class FutureTeacherController {
 	
 	@PostMapping("/future_teachers")
 	public ResponseEntity<Object> createTeacher(@RequestBody FutureTeacher teacher){
+		
+		System.out.println("last Name: "+teacher.toString());
+		
 		FutureTeacher savedTeacher = futureTeacherRepository.save(teacher);
 		
-		
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(savedTeacher.getId()).toUri();
+		URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/{id}").buildAndExpand(savedTeacher.getId()).toUri();
 		return ResponseEntity.created(location).build();
+	
 	}
 	
 	@PutMapping("/future_teachers/{id}")

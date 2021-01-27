@@ -15,6 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.web.cors.CorsConfiguration;
 
 import com.example.springbootdemo.entity.Role;
@@ -76,11 +77,11 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/api/users/*").hasAnyRole(canEditUser.toArray(new String[0]))
 				.antMatchers("/api/tasks/*").hasAnyRole(canEditTask.toArray(new String[0]))
 				.anyRequest().authenticated() // all requests are authenticated
-				.and().formLogin().permitAll() // allow "/login"
+				.and().formLogin().permitAll()// allow "/login"
 				.defaultSuccessUrl("/", true) // set default page for success login
 				.and().logout().permitAll() // allow "logout"
 				.and().cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues());
 				
-	
+	http.csrf().disable();
 	}
 }
