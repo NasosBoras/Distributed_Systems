@@ -48,6 +48,7 @@ public class RoleController {
 	
 	@PostMapping("/roles")
 	public ResponseEntity<Object> createRole(@RequestBody Role role){
+		role.setName(role.getName().toUpperCase());
 		Role savedRole = roleRepository.save(role);
 		
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -60,12 +61,12 @@ public class RoleController {
 	public ResponseEntity<Object> updateRole(@RequestBody Role role, @PathVariable int id){
 		Optional<Role> roleOptional = roleRepository.findById(id);
 		
-		if(roleOptional.isPresent()) {
+		if(!roleOptional.isPresent()) {
 			return ResponseEntity.notFound().build();
 		}
 		
 		role.setId(id);
-		
+		role.setName(role.getName().toUpperCase());
 		roleRepository.save(role);
 		
 		return ResponseEntity.noContent().build();

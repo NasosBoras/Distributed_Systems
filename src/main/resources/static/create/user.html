@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creation</title>
-    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
         <br>
-        <input type="text" id = 'fname' placeholder = "First Name" style = "margin-left: auto;margin-right: auto;display: block;;">
-        <input type="text" id = 'lname' placeholder = "Last Name" style = "margin-left: auto;margin-right: auto;display: block;;">
-        <input type="text" id = 'username' placeholder = "Username" style = "margin-left: auto;margin-right: auto;display: block;">
-        <input type="text" id = 'password' placeholder = "Password" style = "margin-left: auto;margin-right: auto;display: block;">
-        <input type="text" id = 'role' placeholder = "Role" style = "margin-left: auto;margin-right: auto;display: block;">
-        <input id = 'submit' type="button" value = "Submit">
+        <input type="text" id = 'fname' placeholder = "First Name">
+        <input type="text" id = 'lname' placeholder = "Last Name">
+        <input type="text" id = 'username' placeholder = "Username">
+        <input type="text" id = 'password' placeholder = "Password">
+        <input type="text" id = 'role' placeholder = "Role">
+        <input id = 'submit' type="button" value = "Submit" class = 'btn btn-success'>
 </body>
 <script>
     var url = "http://192.168.1.14:8080";
@@ -35,7 +36,7 @@
         xhr.setRequestHeader('Content-Type','application/json');
         xhr.send(JSON.stringify(user));
         xhr.onreadystatechange = function(){
-            if(xhr.readyState == 4 && xhr.status == 200){
+            if(xhr.readyState == 4 && xhr.status == 201){
                 alert('Success');
             }
         }
