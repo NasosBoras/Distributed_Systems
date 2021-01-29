@@ -69,6 +69,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 		System.out.println("Can Edit Profs: "+canEditProf);
 		System.out.println("Can Edit Roles	: "+canEditRole);
 		
+		
 		http.authorizeRequests() // authorize
 				.antMatchers("/").permitAll() // allow "/" to be seen without authentication
 				.antMatchers("/api/*").hasAnyRole("ADMIN")
@@ -78,7 +79,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/api/tasks/*").hasAnyRole(canEditTask.toArray(new String[0]))
 				.anyRequest().authenticated() // all requests are authenticated
 				.and().formLogin().permitAll()// allow "/login"
-				.defaultSuccessUrl("/", true) // set default page for success login
+				.defaultSuccessUrl("/home.html", true) // set default page for success login
 				.and().logout().permitAll() // allow "logout"
 				.and().cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues());
 				
